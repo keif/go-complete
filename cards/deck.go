@@ -49,3 +49,13 @@ func (d deck) toString() string {
 func (d deck) saveToFile(fileName string) error {
 	return os.WriteFile(fileName, []byte(d.toString()), 0666)
 }
+
+func (d deck) newDeckFromFile(fileName string) (deck, error) {
+	bs, err := os.Open(fileName)
+	if err != nil {
+		// Opt 1: log the error and return a call to newDeck()
+		// Opt 2: log the error, quit the program
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+}
