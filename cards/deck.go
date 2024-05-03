@@ -8,6 +8,21 @@ import "fmt"
 // new deck type extends slice of strings
 type deck []string
 
+func newDeck() deck {
+	cards := deck{}
+
+	cardSuites := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
+	cardValues := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
+
+	for _, suit := range cardSuites {
+		for _, value := range cardValues {
+			cards = append(cards, value+" of "+suit)
+		}
+	}
+
+	return cards
+}
+
 // (d deck) is a receiver on a function
 // any variable of type 'deck' now gets access to the 'print' method
 // every variable of type 'deck' can call the method on itself
