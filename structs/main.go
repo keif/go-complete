@@ -26,9 +26,9 @@ func main() {
 	fmt.Println(jim)
 	jim.print()
 	// &variable = give me the memory address of the value this variable is pointing at
-	jimPointer := &jim
-	jimPointer.updateName("Jimmy")
-	jimPointer.print()
+	//jimPointer := &jim
+	jim.updateName("Jimmy")
+	jim.print()
 }
 
 // variable *word = type description - it means we're working with a pointer to a person
