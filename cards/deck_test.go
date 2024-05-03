@@ -40,4 +40,6 @@ func TestSaveToDeckAndNewDeckFromFile(t *testing.T) {
 	if loadedDeck[len(loadedDeck)-1] != "King of Clubs" {
 		t.Errorf("Expected first card of Ace of Spades, got %s", loadedDeck[len(loadedDeck)-1])
 	}
+
+	os.Remove("_decktesting")
 }
