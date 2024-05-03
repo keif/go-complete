@@ -4,5 +4,6 @@ func main() {
 	//cards := newDeck()
 	//cards.saveToFile("cards")
 	cards, _ := newDeckFromFile("cards")
+	cards.shuffle()
 	cards.print()
 }
