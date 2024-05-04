@@ -2,9 +2,9 @@ package main
 
 import "fmt"
 
-type user struct {
-	name string
-}
+//type user struct {
+//	name string
+//}
 
 // new type of bot
 type bot interface {
@@ -12,8 +12,8 @@ type bot interface {
 	// and you return a string and a honorary member of type "bot"
 	// and honorary members can call getGreeting
 	getGreeting() string
-	getBotVersion() float64
-	responseToUser(user) string
+	//getBotVersion() float64
+	//responseToUser(user) string
 }
 
 type englishBot struct{}
