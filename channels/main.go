@@ -37,8 +37,13 @@ func main() {
 	// the "verbose" option XD
 	// watch channel c, when we get a value, assign to l, then execute the loop
 	for l := range c {
-		time.Sleep(5 * time.Second)
-		go checkLink(l, c)
+		//go checkLink(l, c)
+		// function literal
+		go func() {
+			time.Sleep(5 * time.Second)
+			checkLink(l, c)
+		}()
+
 	}
 }
 
