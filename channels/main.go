@@ -16,7 +16,9 @@ func main() {
 	}
 
 	for _, link := range links {
-		checkLink(link)
+		// "go" being added means run this function inside its own thread go routine
+		// and runs checkLink inside it
+		go checkLink(link)
 	}
 }
 
