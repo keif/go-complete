@@ -24,12 +24,8 @@ func main() {
 	defer file.Close() // close file when done
 
 	// read the file
-	content, err := io.ReadAll(file)
-	if err != nil {
+	if _, err := io.Copy(os.Stdout, file); err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
 		os.Exit(1)
 	}
-
-	// print file content
-	fmt.Println(string(content))
 }
