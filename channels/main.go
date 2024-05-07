@@ -28,8 +28,14 @@ func main() {
 
 	// infinite loop - whenever we pass in a value to a channel
 	// receiving the value is a blocking operation
-	for {
-		go checkLink(<-c, c)
+	//for {
+	//	go checkLink(<-c, c)
+	//}
+	// equivalent to the above
+	// wait for the channel to return some value, assign to l
+	// the "verbose" option XD
+	for l := range c {
+		go checkLink(l, c)
 	}
 }
 
