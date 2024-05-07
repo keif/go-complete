@@ -26,8 +26,10 @@ func main() {
 		go checkLink(link, c)
 	}
 
-	for i := 0; i < len(links); i++ {
-		fmt.Println(<-c)
+	// infinite loop - whenever we pass in a value to a channel
+	// receiving the value is a blocking operation
+	for {
+		go checkLink(<-c, c)
 	}
 }
 
@@ -35,11 +37,11 @@ func checkLink(link string, c chan string) bool {
 	_, err := http.Get(link)
 	if err != nil {
 		fmt.Printf("%s might be down.\n", link)
-		c <- "Might be down, I think"
+		c <- link
 		return false
 	}
 
 	fmt.Printf("%s is up.\n", link)
-	c <- "Yup, it's up"
+	c <- link
 	return true
 }
