@@ -15,20 +15,29 @@ func main() {
 		"http://www.amazon.com",
 	}
 
+	c := make(chan string)
+
 	for _, link := range links {
 		// "go" being added means run this function inside its own thread go routine
 		// and runs checkLink inside it
-		go checkLink(link)
+		// concurrency - when code is running, if one thread blocks, another one is picked up and worked on. Single CPU
+		// parallelism - multiple threads executed at "exact" same time. Requires multiple CPUs
+		//go checkLink(link)
+		go checkLink(link, c)
 	}
+
+	fmt.Println(<-c)
 }
 
-func checkLink(link string) bool {
+func checkLink(link string, c chan string) bool {
 	_, err := http.Get(link)
 	if err != nil {
-		fmt.Printf("The link %s might be down.\n", link)
+		fmt.Printf("%s might be down.\n", link)
+		c <- "Might be down, I think"
 		return false
 	}
 
-	fmt.Printf("The link %s is up.\n", link)
+	fmt.Printf("%s is up.\n", link)
+	c <- "Yup, it's up"
 	return true
 }
